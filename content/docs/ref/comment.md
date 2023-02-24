@@ -13,8 +13,8 @@ you. See some [examples](#examples).
 cml comment create [options] <markdown report file>
 ```
 
-Post a Markdown report as a comment on a commit, pull/merge or issue request. By
-default, PR comments are created (see `--target` for more details).
+Post a markdown report as a comment on a commit, pull/merge request, or issue.
+By default, PR comments are created (see `--target` for more details).
 
 ## update
 
@@ -37,10 +37,10 @@ comment to `update`.
 
 Any [generic option](/doc/ref) in addition to:
 
-- `--target`: Specify comment type and target (`pr`, `commit`, `issue/12`,
-  `pr/17` or `commit/abcdef`). Defaults to 1) using the PR associated with the
-  workflow context, 2) finding a PR containing the `HEAD` commit, or 3)
-  attaching the comment to the `HEAD` commit itself.
+- `--target=<pr|commit|issue>[/ref]`: Where to post/associate with the comment
+  (`pr`, `commit`, `issue`), optionally with a reference (`issue/12`, `pr/17`,
+  `commit/`[rev](https://git-scm.com/docs/gitrevisions) [default: `pr` falling
+  back to `commit/HEAD`].
 
 - `--watch`: Watch for changes and automatically update the comment (doesn't
   exit, consider
@@ -61,21 +61,6 @@ Any [generic option](/doc/ref) in addition to:
   `cml comment update` calls); `"{workflow}"` and `"{run}"` are auto-replaced.
 
 ## Examples
-
-### Commenting on commits or issues
-
-Use the `--target` option for fine-grained control on where to post the comment.
-
-```cli
-# Create an issue comment
-$ cml comment create --target=issue/12 report.md
-
-# Create a pull/merge request comment for a specific PR
-$ cml comment create --target=pr/12 report.md
-
-# Create a commit comment attached to a specific commit
-$ cml comment create --target=commit/abcdef report.md
-```
 
 ### Managing multiple comments
 
